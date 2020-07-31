@@ -1,0 +1,17 @@
+.list {
+    list-style: none;
+    padding: 0;
+    height: 800px;
+    overflow: scroll;
+}
+
+.list-item {
+    display: block;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 5px;
+    width: 100%;
+    height: 100px;
+    background-color: #ff6c6c;
+    text-align: center;
+    line-height: 100px;
+}
