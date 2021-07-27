@@ -2,21 +2,35 @@
  * @Author: Gong Wei
  * @Date: 2020-07-23 20:44:38
  * @LastEditor: Gong Wei
- * @LastEditTime: 2020-07-30 19:18:44
+ * @LastEditTime: 2020-08-20 16:17:06
  * @Description:
  */
 import React, { useState } from 'react';
+import PropTypes from 'props-type';
 
 /**
  * 列表项组件
  * @param {object} props
  */
-function ListItem(props) {
+function ListItem (props) {
+    ListItem.defaultProps = {
+        checked: 0,
+        task: '',
+        handleListChange: () => {}
+    };
+
+    ListItem.propTypes = {
+        checked: PropTypes.number,
+        task: PropTypes.string,
+        handleListChange: PropTypes.func
+    };
+
     const { checked, task, handleListChange } = props;
 
     return (
         <li>
-            <input type="checkbox"
+            <input
+                type="checkbox"
                 checked={checked}
                 disabled={checked === true}
                 onChange={() => {
@@ -24,12 +38,12 @@ function ListItem(props) {
                         checked: true,
                         task: task,
                         isComplete: true
-                    })
+                    });
                 }}
             />
             <span>{task}</span>
         </li>
-    )
+    );
 }
 
 /**
@@ -37,7 +51,15 @@ function ListItem(props) {
  * @param {object} props
  */
 function List(props) {
-    const [ list, setList ] = useState(props.list)
+    List.defaultProps = {
+        list: []
+    };
+
+    List.propTypes = {
+        list: PropTypes.array
+    };
+
+    const [list, setList] = useState(props.list);
 
     /**
      * 监听回车键，完成待办项输入
@@ -49,10 +71,11 @@ function List(props) {
                     checked: false,
                     task: e.target.value,
                     isComplete: false
-            })
+            });
             return setList([...list]);
         }
-    }
+        return 0;
+    };
 
     /**
      * 更新列表状态
@@ -64,17 +87,18 @@ function List(props) {
                 item.checked = listItem.checked;
                 item.isComplete = listItem.isComplete;
             }
-        })
+        });
         setList([...list]);
-    }
+    };
 
     return (
         <div>
         <label>ToDoList</label>
         <input type="text"
-            onKeyDown={(e) => {keyDown(e)}}
+            onKeyDown={ (e) => { keyDown(e); }}
             placeholder="添加ToDo"
-            required="required" />
+            required="required"
+        />
         <br />
         <span>正在进行</span>
             <label>{list.filter(item => {
@@ -113,7 +137,7 @@ function List(props) {
                 }
             </ul>
         </div>
-    )
+    );
 }
 
 export default List;
