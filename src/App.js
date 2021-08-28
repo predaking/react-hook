@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-// import MoreList from './MoreList/MoreList';
-import TestDemo from './HooksDemo/HooksDemo';
+import MoreList from './MoreList/MoreList';
+// import TestDemo from './HooksDemo/HooksDemo';
+// import List from './List';
+
 // import ClassComp from './ClassComp/ClassComp';
 class App extends Component {
     constructor(props) {
@@ -38,9 +40,13 @@ class App extends Component {
     }
 
     render() {
+        const {
+            list
+        } = this.state;
+
         return (
             <div>
-                <TestDemo />
+                <MoreList list={list} />
             </div>
         );
     }

@@ -6,7 +6,7 @@
  * @Description:
  */
 import React, { useState } from 'react';
-import PropTypes from 'props-type';
+import PropTypes from 'prop-types';
 
 /**
  * 列表项组件
@@ -101,12 +101,12 @@ function List(props) {
         />
         <br />
         <span>正在进行</span>
-            <label>{list.filter(item => {
+            <label>{list && list.filter(item => {
                 return item.isComplete === false;
             }).length}
             </label>
             <ul>
-                {list.filter(item => {
+                {list && list.filter(item => {
                         return item.isComplete === false;
                     }).map((item, index) => (
                         <ListItem key={index}
@@ -120,12 +120,12 @@ function List(props) {
             </ul>
 
         <span>已经完成</span>
-            <label>{list.filter(item => {
+            <label>{list && list.filter(item => {
                 return item.isComplete === true;
             }).length}
             </label>
             <ul>
-                {list.filter(item => {
+                {list && list.filter(item => {
                         return item.isComplete === true;
                     }).map((item, index) => (
                         <ListItem key={index}
